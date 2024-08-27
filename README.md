@@ -1,50 +1,107 @@
-# Welcome to your Expo app 👋
+# Weather App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Overview
 
-## Get started
+This Weather App is a mobile application built using React Native and Expo. It allows users to check the current weather conditions of any location, switch between different weather services, and experience the app in different themes. The app is optimized for performance with dynamic imports, and it includes a suite of unit tests to ensure robustness.
 
-1. Install dependencies
+## Features
+
+- **Weather Information:** Fetch real-time weather data for any location.
+- **Service Switching:** Toggle between two weather services (Service A and Service B) to get weather data.
+- **Theming:** Support for multiple themes with easy switching between them.
+- **Dynamic Imports:** Lazy loading of components to optimize performance.
+- **Form Validation:** Simple validation for location input to prevent incorrect data fetching.
+- **Testing:** A comprehensive test suite using Jest and React Testing Library.
+
+## Getting Started
+
+### Prerequisites
+
+Ensure you have the following installed on your development environment:
+
+- Node.js
+- Yarn or npm
+- Expo CLI (`npm install -g expo-cli`)
+
+### Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/yourusername/weather-app.git
+   cd weather-app
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   yarn install
+   ```
+
+   or
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. **Start the development server:**
 
    ```bash
-    npx expo start
+   npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+4. **Run the app on Expo Go:**
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   - Install the Expo Go app on your Android or iOS device.
+   - Scan the QR code displayed in your terminal or browser to load the app on your device.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Project Structure
 
-## Get a fresh project
+- **`src/components`**: Contains reusable UI components like `WeatherDisplay`, `LocationInput`, `ThemedButton`, `ThemedText`, and `ThemedView`.
+- **`src/hooks`**: Custom hooks like `useWeather` and `useTheme` that manage weather data and theming respectively.
+- **`src/services`**: Services that handle API calls to different weather providers.
+- **`src/utils`**: Utility functions for tasks like input validation and error handling.
+- **`src/constants`**: Theme definitions and other constants used throughout the app.
+- **`__tests__`**: Unit tests for components, hooks, services, and utilities.
 
-When you're ready, run:
+### Running Tests
 
-```bash
-npm run reset-project
-```
+This project includes a comprehensive set of unit tests. To run the tests:
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+1. **Run the tests:**
 
-## Learn more
+   ```bash
+   yarn test
+   ```
 
-To learn more about developing your project with Expo, look at the following resources:
+   or
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+   ```bash
+   npm test
+   ```
 
-## Join the community
+   There are a couple of options to run the tests as seen in the package.json file:
 
-Join our community of developers creating universal apps.
+2. **Test Coverage:**
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+   View the test coverage report generated after running the tests. The report is located in the `coverage/` directory, which is included in the `.gitignore` file.
+
+### What This Project Can Do
+
+- **Real-time Weather Data**: Fetches and displays current weather conditions for any location.
+- **Service Switching**: Users can switch between two different weather services to compare data.
+- **Dynamic Imports**: The app uses dynamic imports to lazy load components like `WeatherDisplay`, optimizing performance by loading components only when needed.
+- **Theming**: The app supports multiple themes, which can be toggled dynamically. The theming is managed through a context provider, ensuring that the theme is consistent across all components.
+- **Validation**: The location input is validated to ensure that users enter a valid location, reducing errors in data fetching.
+
+### Future Improvements
+
+If I had more time and scope, I would work on the following enhancements:
+
+- **Offline Mode**: Implementing caching and offline capabilities so users can access previously fetched weather data even without an internet connection.
+- **Expanded Test Coverage**: Increasing the test coverage, particularly for edge cases and error handling scenarios.
+- **Animation and Transitions**: Adding subtle animations and transitions to improve the user experience, especially during theme switching and data fetching.
+- **Enhanced Error Handling**: Providing more detailed error messages and fallback UI components in case of failed API requests or other issues.
+- **Localization**: Adding support for multiple languages to make the app accessible to a wider audience.
+- **User Preferences**: Storing user preferences such as the last searched location and selected theme, so they are remembered between sessions.
+- **API Key Management**: Implementing a more secure way to handle API keys, perhaps integrating with a secure vault or environment-specific key management.
