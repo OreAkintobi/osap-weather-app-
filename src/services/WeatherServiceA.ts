@@ -50,14 +50,14 @@ export class WeatherServiceA implements WeatherService {
 
   normalizeResponse(response: WeatherDataA): WeatherData {
     return {
-      locationName: response.name,
-      epochTime: response.dt,
-      condition: response.weather[0].main,
+      locationName: response.name || '',
+      epochTime: response.dt || 0,
+      condition: response.weather[0].main || '',
       temperature: {
-        current: response.main.temp,
-        high: response.main.temp_max,
+        current: response.main.temp || 0,
+        high: response.main.temp_max || 0,
       },
-    } as WeatherData;
+    };
   }
 
   async getWeatherMock(location: string): Promise<WeatherData> {
