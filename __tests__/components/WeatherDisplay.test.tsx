@@ -3,13 +3,12 @@ import { render } from '@testing-library/react-native';
 import { WeatherDisplay } from '../../src/components/WeatherDisplay';
 import { useTheme } from '../../src/hooks/useTheme';
 
-// Mock the useTheme hook to return a specific theme
 jest.mock('../../src/hooks/useTheme', () => ({
   useTheme: jest.fn().mockReturnValue({
     currentTheme: {
       background: '#fff',
       text: '#000',
-      primary: 'orange', // Mock primary color for the service indicator
+      primary: 'orange',
     },
   }),
 }));

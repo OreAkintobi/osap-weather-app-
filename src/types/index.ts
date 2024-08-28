@@ -101,7 +101,7 @@ export interface WeatherDataB {
 }
 
 export interface WeatherService {
-  getWeather(location: string): Promise<WeatherData>;
+  getWeather(location: string): Promise<WeatherDataA>;
   getWeatherMock(location: string): Promise<WeatherData>;
   normalizeResponse(response: WeatherDataA | WeatherDataB): WeatherData;
 }

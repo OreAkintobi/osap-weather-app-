@@ -15,17 +15,11 @@ export const useWeather = () => {
       setLoading(true);
       const serviceInstance = await getWeatherService(service);
       const data = await serviceInstance.getWeather(loc);
-      // const data = await serviceInstance.getWeatherMock(loc);
       const normalizedData =
         service === 'A'
           ? serviceInstance.normalizeResponse(data as unknown as WeatherDataA)
           : serviceInstance.normalizeResponse(data as unknown as WeatherDataB);
-      // console.log(`WeatherService ${service} => `, data);
       setWeatherData(normalizedData);
-      // console.log(
-      //   'WeatherData => ',
-      //   serviceInstance.normalizeResponse(mockResponseA)
-      // );
     } finally {
       setLoading(false);
     }

@@ -15,7 +15,6 @@ export const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
 }) => {
   const { currentTheme } = useTheme();
 
-  // Themed styles for the component
   const styles = StyleSheet.create({
     container: {
       padding: 16,

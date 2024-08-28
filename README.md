@@ -44,13 +44,24 @@ Ensure you have the following installed on your development environment:
    npm install
    ```
 
-3. **Start the development server:**
+3. **Add environment variables:**
+
+   Create a `.env` file in the root directory and add the following environment variables:
+
+   ```env
+   EXPO_PUBLIC_OPENWEATHER_API_API_KEY=your_api_key_for_service_a
+   EXPO_PUBLIC_WEATHER_API_API_KEY=your_api_key_for_service_b
+   ```
+
+   Replace `your_api_key_for_service_a` and `your_api_key_for_service_b` with your API keys for the weather services you are using. If you need API keys, you can create them from [OpenWeatherMap](https://openweathermap.org/api) and [WeatherAPI](https://www.weatherapi.com/) or use mine (provided with email).
+
+4. **Start the development server:**
 
    ```bash
    npx expo start
    ```
 
-4. **Run the app on Expo Go:**
+5. **Run the app on Expo Go:**
 
    - Install the Expo Go app on your Android or iOS device.
    - Scan the QR code displayed in your terminal or browser to load the app on your device.
@@ -80,7 +91,7 @@ This project includes a comprehensive set of unit tests. To run the tests:
    npm test
    ```
 
-   There are a couple of options to run the tests as seen in the package.json file:
+   There are a couple of options to run the tests as seen in the package.json file
 
 2. **Test Coverage:**
 
@@ -98,6 +109,11 @@ This project includes a comprehensive set of unit tests. To run the tests:
 
 If I had more time and scope, I would work on the following enhancements:
 
+- **Refactors**: I would have liked to do the following:
+  - Refactor the `WeatherService` classes so that `normalizeResponse` is private, and it is only exposing the final data to the user.
+  - Add more modularity to the `HomeScreen` file (app/index.tsx) by making just 2/3 components and THEN making those components available in the screen.
+  - Add more dynamic importing and lazy loading to the app.
+  - Remove incidences of `any` in the codebase (would have liked to do this, but did not complete refactor to `WeatherService` classes).
 - **Offline Mode**: Implementing caching and offline capabilities so users can access previously fetched weather data even without an internet connection.
 - **Expanded Test Coverage**: Increasing the test coverage, particularly for edge cases and error handling scenarios.
 - **Animation and Transitions**: Adding subtle animations and transitions to improve the user experience, especially during theme switching and data fetching.

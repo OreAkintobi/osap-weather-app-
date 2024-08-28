@@ -1,4 +1,3 @@
-// __tests__/utils/validateLocation.test.ts
 import { validateLocation } from '../../src/utils';
 
 describe('validateLocation', () => {
