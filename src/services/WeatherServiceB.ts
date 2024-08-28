@@ -1,5 +1,4 @@
 import { WeatherData, WeatherDataB, WeatherService } from '@/src/types';
-
 import axios from 'axios';
 import { handleError } from '@/src/utils/';
 
@@ -23,15 +22,11 @@ export class WeatherServiceB implements WeatherService {
   }
 
   private async getWeatherByCity(city: string): Promise<any> {
-    try {
-      const weatherUrl = `https://api.weatherapi.com/v1/current.json?key=${
-        this.apiKey
-      }&q=${encodeURIComponent(city)}&aqi=no`;
-      const response = await axios.get(weatherUrl);
-      return response.data;
-    } catch (error: unknown) {
-      handleError(error, 'Weather API (WeatherAPI)');
-    }
+    const weatherUrl = `https://api.weatherapi.com/v1/current.json?key=${
+      this.apiKey
+    }&q=${encodeURIComponent(city)}&aqi=no`;
+    const response = await axios.get(weatherUrl);
+    return response.data;
   }
 
   normalizeResponse(response: WeatherDataB): WeatherData {

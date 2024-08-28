@@ -24,40 +24,28 @@ export class WeatherServiceA implements WeatherService {
   private async getCityCoordinates(
     city: string
   ): Promise<{ lat: number; lon: number }> {
-    try {
-      const geocodeUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
-        city
-      )}&limit=1&appid=${this.apiKey}`;
-      const response = await axios.get(geocodeUrl);
+    const geocodeUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
+      city
+    )}&limit=1&appid=${this.apiKey}`;
+    const response = await axios.get(geocodeUrl);
 
-      if (response.data && response.data.length > 0) {
-        const { lat, lon } = response.data[0];
-        return { lat, lon };
-      } else {
-        throw new Error(`City "${city}" not found.`);
-      }
-    } catch (error: unknown) {
-      handleError(error, 'GeoCoder API (OpenWeather)');
+    if (response.data && response.data.length > 0) {
+      const { lat, lon } = response.data[0];
+      return { lat, lon };
+    } else {
+      throw new Error(`City "${city}" not found.`);
     }
   }
 
   private async getWeatherData(lat: number, lon: number): Promise<any> {
-    try {
-      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${this.apiKey}&units=metric`;
-      const response = await axios.get(weatherUrl);
-      return response.data;
-    } catch (error: unknown) {
-      handleError(error, 'Weather API (OpenWeather)');
-    }
+    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${this.apiKey}&units=metric`;
+    const response = await axios.get(weatherUrl);
+    return response.data;
   }
 
   private async getWeatherByCity(city: string): Promise<any> {
-    try {
-      const { lat, lon } = await this.getCityCoordinates(city);
-      return await this.getWeatherData(lat, lon);
-    } catch (error: unknown) {
-      handleError(error, 'WeatherServiceA');
-    }
+    const { lat, lon } = await this.getCityCoordinates(city);
+    return await this.getWeatherData(lat, lon);
   }
 
   normalizeResponse(response: WeatherDataA): WeatherData {

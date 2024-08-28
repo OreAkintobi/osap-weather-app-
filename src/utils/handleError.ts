@@ -1,26 +1,34 @@
 import axios from 'axios';
 
-export function handleError(error: unknown, apiName: string): never {
+export function handleError(error: unknown, apiName: string) {
+  let userFriendlyMessage = 'Something went wrong. Please try again later.';
+
   if (error instanceof Error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {
         // Server responded with a status other than 2xx
-        throw new Error(
-          `${apiName} error: ${
-            error.response.data.message || error.response.statusText
-          }`
-        );
+        userFriendlyMessage =
+          error.response.data.message ||
+          error.response?.data?.error?.message ||
+          'An unexpected error occurred while communicating with the server.';
       } else if (error.request) {
         // Request was made but no response was received
-        throw new Error(`${apiName} error: No response from server.`);
+        userFriendlyMessage =
+          'Unable to reach the server. Please check your internet connection.';
       } else {
         // Something happened in setting up the request
-        throw new Error(`${apiName} request error: ${error.message}`);
+        userFriendlyMessage =
+          error.message ||
+          'There was a problem setting up the request. Please try again.';
       }
     } else {
-      throw new Error(`Unknown error in ${apiName}: ${error.message}`);
+      // Non-Axios errors
+      userFriendlyMessage =
+        error.message || 'An unexpected error occurred. Please try again.';
     }
   } else {
-    throw new Error(`Unknown error occurred in ${apiName}.`);
+    // Unknown type of error
+    userFriendlyMessage = `Unknown error occurred in ${apiName}.`;
   }
+  alert(userFriendlyMessage);
 }
